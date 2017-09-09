@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="shortcut icon" href="./assets/favicon.png">
+    <link rel="shortcut icon" href="./assets/img/favicon.png">
     <script src="./assets/js/jquery-3.2.1.min.js"></script>
     <meta charset="utf-8">
     <title>Meilk Clicker Online</title>
@@ -11,10 +11,6 @@
          var meilk = 0;
          var meilkpclick = 1;
          var meilkpsecond = 0;
-         var sicloading = 1;
-         var sisloading = 1;
-         var sicloading2 = 1;
-         var sisloading2 = 1;
          var cost = 0;
          var mpcreward = 0;
          var mpsreward = 0;
@@ -22,27 +18,39 @@
          var sic1 = 30;
          var sic2 = 70;
          var sic3 = 200;
+         var sic4 = 500;
          //Shop Upgrades for Seconds
          var sis1 = 20;
          var sis2 = 100;
          var sis3 = 250;
+         var sis4 = 470;
+         var sis5 = 750;
+
+         function reloadShop() {
+           var sicloading = 1;
+           var sisloading = 1;
+           var sicloading2 = 1;
+           var sisloading2 = 1;
+           while (sicloading < 5) {
+              sicloading2 = eval("sic" + sicloading)
+              $("#sicl" + sicloading).text(sicloading2 + " Meilk");
+              sicloading++;
+              console.log("Sic Loading " + sicloading2);
+           }
+           while (sisloading < 6) {
+             sisloading2 = eval("sis" + sisloading)
+             $("#sisl" + sisloading).text(sisloading2 + " Meilk");
+             sisloading++;
+              console.log("Sis Loading " + sisloading2);
+           }
+         }
 
          //Set the meilk count
          $(".meilkstats").text(meilk + " Meilk");
          $(".mpsstats").text(meilkpsecond + " Meilk / Second");
          $(".mpcstats").text(meilkpclick + " Meilk / Click");
-         while (sicloading < 4) {
-            sicloading2 = eval("sic" + sicloading)
-            $("#sicl" + sicloading).text(sicloading2 + " Meilk");
-            sicloading++;
-            console.log("Sic Loading " + sicloading2);
-         }
-         while (sisloading < 4) {
-           sisloading2 = eval("sis" + sisloading)
-           $("#sisl" + sisloading).text(sisloading2 + " Meilk");
-           sisloading++;
-            console.log("Sis Loading " + sisloading2);
-         }
+
+         reloadShop();
 
          //Meilk Clicker!
          $(".meilk").click(function(){
@@ -89,6 +97,16 @@
            }
          });
 
+         $("#sic4").click(function(){
+           cost = sic4;
+           mpcreward = 12;
+           if (meilk >= cost) {
+             sic4 *= 12;
+             sic4 /= 10;
+             purchase();
+           }
+         });
+
          $("#sis1").click(function(){
            cost = sis1;
            mpsreward = 1;
@@ -122,6 +140,28 @@
            }
          });
 
+         $("#sis4").click(function(){
+           cost = sis4;
+           mpsreward = 10;
+           sis4 = Math.floor(sis4);
+           if (meilk >= cost) {
+             sis4 *= 12;
+             sis4 /= 10;
+             purchase();
+           }
+         });
+
+         $("#sis5").click(function(){
+           cost = sis5;
+           mpsreward = 10;
+           sis5 = Math.floor(sis5);
+           if (meilk >= cost) {
+             sis5 *= 12;
+             sis5 /= 10;
+             purchase();
+           }
+         });
+
          //le purchase stuff :I
          function purchase() {
            if (meilk >= cost) {
@@ -143,48 +183,29 @@
            sic1 = Math.floor(sic1);
            sic2 = Math.floor(sic2);
            sic3 = Math.floor(sic3);
+           sic4 = Math.floor(sic4);
            sis1 = Math.floor(sis1);
            sis2 = Math.floor(sis2);
            sis3 = Math.floor(sis3);
-           sicloading = 1;
-           sisloading = 1;
-           while (sicloading < 4) {
-              sicloading2 = eval("sic" + sicloading)
-              $("#sicl" + sicloading).text(sicloading2 + " Meilk");
-              sicloading++;
-           }
-           while (sisloading < 4) {
-             sisloading2 = eval("sis" + sisloading)
-             $("#sisl" + sisloading).text(sisloading2 + " Meilk");
-             sisloading++;
-           }
+           sis4 = Math.floor(sis4);
+           sis5 = Math.floor(sis5);
+           reloadShop();
          }
-       });
-       //ToDo - Fix this
-       /*
-       document.addEventListener('keydown', function(event) {
-           if (event.keyCode == 82) {
-             sicloading = 1;
-             sisloading = 1;
-             while (sicloading < 4) {
-                sicloading2 = eval("sic" + sicloading)
-                $("#sicl" + sicloading).text(sicloading2 + " Meilk");
-                sicloading++;
-             }
-             while (sisloading < 4) {
-               sisloading2 = eval("sis" + sisloading)
-               $("#sisl" + sisloading).text(sisloading2 + " Meilk");
-               sisloading++;
-             }
+
+         //Reload Shop :I
+         $("body").keydown(function(event){
+           if (event.keyCode == 82 ) {
+             reloadShop();
            }
-       }, true);
-       */
+         });
+       });
+
     </script>
   </head>
   <body>
     <div class="meilkarea">
       <p class="meilkstats"> Meilk</p>
-      <img src="./assets/meilk.png" alt="Meilk!" class="meilk" draggable="false">
+      <img src="./assets/img/meilk.png" alt="Meilk!" class="meilk" draggable="false">
       <p class="mpsstats"> Meilk / Second</p>
       <p class="mpcstats"> Meilk / Click</p>
     </div>
@@ -193,6 +214,8 @@
         <li class="shopitem" id="sis1"><p class="shopitem1">Auto Meilker</p><p id="sisl1" class="shopitem2">X Meilk</p></li>
         <li class="shopitem" id="sis2"><p class="shopitem1">Meilk Farm</p><p id="sisl2" class="shopitem2">X Meilk</p></li>
         <li class="shopitem" id="sis3"><p class="shopitem1">Meilk Mine</p><p id="sisl3" class="shopitem2">X Meilk</p></li>
+        <li class="shopitem" id="sis4"><p class="shopitem1">Meilk Drill</p><p id="sisl4" class="shopitem2">X Meilk</p></li>
+        <li class="shopitem" id="sis5"><p class="shopitem1">Meilk Rocket</p><p id="sisl5" class="shopitem2">X Meilk</p></li>
       </ul>
     </div>
     <div class="shop">
@@ -200,10 +223,11 @@
         <li class="shopitem" id="sic1"><p class="shopitem1">Better Meilk</p><p id="sicl1" class="shopitem2">X Meilk</p></li>
         <li class="shopitem" id="sic2"><p class="shopitem1">Moo Meilk</p><p id="sicl2" class="shopitem2">X Meilk</p></li>
         <li class="shopitem" id="sic3"><p class="shopitem1">Super Meilk</p><p id="sicl3" class="shopitem2">X Meilk</p></li>
+        <li class="shopitem" id="sic4"><p class="shopitem1">Crazy Meilk</p><p id="sicl4" class="shopitem2">X Meilk</p></li>
       </ul>
     </div>
     <div class="version">
-      <p>v0.1-11</p>
+      <p>v0.2-12</p>
     </div>
   </body>
   <style media="screen">
