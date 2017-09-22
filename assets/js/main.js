@@ -175,4 +175,17 @@ $(document).ready(function(){
       reloadShop();
     }
   });
+
+  //Button Visuals
+  $(".shopitem").mousedown(function(){
+    $(this).css({"border-color": "#B5A61E", "background-color": "#E8DB6C"});
+  });
+
+  $("body").mouseup(function(){
+    $(".shopitem").css({"border-color": "#CCBB22", "background-color": "#EEE697"});
+  });
+
+  $(".shopitem").mouseleave(function(){
+    $(".shopitem").css({"border-color": "#CCBB22", "background-color": "#EEE697"});
+  });
 });
