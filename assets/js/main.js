@@ -4,6 +4,7 @@ $(document).ready(function(){
   var meilkpclick = 1;
   var meilkpsecond = 0;
   var cost = 0;
+  var antimacro = 0;
   //Shop Upgrades for Items
   var sic1 = 30;
   var sic2 = 70;
@@ -47,9 +48,15 @@ $(document).ready(function(){
 
   //Meilk Clicker!
   $(".meilk").click(function(){
-    meilk += meilkpclick
-    console.log(`Meilk: ${meilk}; MPC: ${meilkpclick};`);
-    $(".meilkstats").text(`${meilk} Meilk`);
+    if (antimacro < 21) {
+      meilk += meilkpclick
+      console.log(`Meilk: ${meilk}; MPC: ${meilkpclick};`);
+      $(".meilkstats").text(`${meilk} Meilk`);
+       antimacro++
+    } else {
+      console.error(`Ha! Anti-Macro caught you! You clicked ${antimacro} in this second! `);
+      antimacro++
+    }
   });
 
 
@@ -60,6 +67,7 @@ $(document).ready(function(){
     meilk = Math.floor(meilk);
     meilkpsecond = Math.floor(meilkpsecond);
     meilkpclick = Math.floor(meilkpclick);
+    antimacro = 0;
   }, 1000);
 
 
