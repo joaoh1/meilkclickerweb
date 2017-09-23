@@ -4,20 +4,24 @@ $(document).ready(function(){
   var meilkpclick = parseInt(localStorage['mpccache']) || 1;
   var meilkpsecond = parseInt(localStorage['mpscache']) || 0;
   var cost = 0;
+  var cacheenabled = 0;
   var antimacro = 0;
-  //ToDo - Cleanup this
+  //To make Shop Stuff easier!
+  function createSi(si, sicost) {
+    eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
+    console.log(`Creates Si! ${si} ${sicost} ${'si' + si}`);
+  }
   //Shop Upgrades for Items
-  var sic1 = parseInt(localStorage['sic1cache']) || 30;
-  var sic2 = parseInt(localStorage['sic2cache']) || 70;
-  var sic3 = parseInt(localStorage['sic3cache']) || 200;
-  var sic4 = parseInt(localStorage['sic4cache']) || 500;
+  createSi("c1", 30);
+  createSi("c2", 70);
+  createSi("c3", 200);
+  createSi("c4", 500);
   //Shop Upgrades for Seconds
   var sis1 = parseInt(localStorage['sis1cache']) || 20;
   var sis2 = parseInt(localStorage['sis2cache']) || 100;
   var sis3 = parseInt(localStorage['sis3cache']) || 250;
   var sis4 = parseInt(localStorage['sis4cache']) || 475;
   var sis5 = parseInt(localStorage['sis5cache']) || 750;
-
 
   //Stuff to reload shop :I
   function reloadShop() {
@@ -70,7 +74,8 @@ $(document).ready(function(){
     antimacro = 0;
   }, 1000);
 
-  setInterval(function () {
+  if (cacheenabled = 1) {
+    setInterval(function () {
     $(".savestatus").text("Saving...").fadeIn(0);
     localStorage['meilkcache'] = meilk;
     localStorage['mpscache'] = meilkpsecond;
@@ -86,7 +91,7 @@ $(document).ready(function(){
     localStorage['sis4cache'] = sis4;
     localStorage['sis5cache'] = sis5;
     $(".savestatus").text("Saved!").delay(500).fadeOut(400);
-  }, 5000)
+  }, 5000)}
 
   //Shop Items: Per Clicks
   $("#sic1").click(function(){
