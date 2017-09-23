@@ -30,14 +30,14 @@ $(document).ready(function(){
     let sisloading = 1;
     let sicloading2 = 1;
     let sisloading2 = 1;
-    while (sicloading =< siccount) {
+    while (sicloading <= siccount) {
        eval(`sic${sicloading} = Math.floor(sic${sicloading});`);
        sicloading2 = eval(`sic${sicloading}`);
        $(`#sicl${sicloading}`).text(`${sicloading2} Meilk`);
        sicloading++;
        console.log(`Sic Loading ${sicloading};${sicloading2};`);
     }
-    while (sisloading =< siscount) {
+    while (sisloading <= siscount) {
        eval(`sis${sisloading} = Math.floor(sis${sisloading});`);
        sisloading2 = eval(`sis${sisloading}`);
        $(`#sisl${sisloading}`).text(`${sisloading2} Meilk`);
@@ -84,13 +84,13 @@ $(document).ready(function(){
        localStorage['mpccache'] = meilkpclick;
        //ToDo: Simplify this (a.k.a. less spaghetti)
        let siccaching = 1;
-       while (siccaching < 5) {
+       while (siccaching <= siccount) {
           eval(`localStorage['sic${siccaching}cache'] = sic${siccaching};`);
           console.log(`Caching Sic: ${siccaching}`);
           siccaching++;
        }
        let siscaching = 1;
-       while (siscaching < 6) {
+       while (siscaching <= siscount) {
           eval(`localStorage['sis${siscaching}cache'] = sis${siscaching};`);
           console.log(`Caching Sis: ${siscaching}`);
           siscaching++;
@@ -213,13 +213,13 @@ $(document).ready(function(){
         localStorage['mpscache'] = undefined;
         localStorage['mpccache'] = undefined;
         let siccleaning = 1;
-        while (siccleaning =< siccount) {
+        while (siccleaning >= siccount) {
            eval(`localStorage['sic${siccleaning}cache'] = undefined;`);
            console.log(`Cleaning Sic Cache: ${siccleaning}`);
            siccleaning++;
         }
         let siscleaning = 1;
-        while (siscleaning =< siscount) {
+        while (siscleaning <= siscount) {
            eval(`localStorage['sis${siscleaning}cache'] = undefined`);
            console.log(`Cleaning Sis Cache: ${siscleaning}`);
            siscleaning++;
