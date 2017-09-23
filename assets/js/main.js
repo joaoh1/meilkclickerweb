@@ -213,7 +213,7 @@ $(document).ready(function(){
         localStorage['mpscache'] = undefined;
         localStorage['mpccache'] = undefined;
         let siccleaning = 1;
-        while (siccleaning >= siccount) {
+        while (siccleaning <= siccount) {
            eval(`localStorage['sic${siccleaning}cache'] = undefined;`);
            console.log(`Cleaning Sic Cache: ${siccleaning}`);
            siccleaning++;
