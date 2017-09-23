@@ -1,21 +1,22 @@
 $(document).ready(function(){
   //Basic Variables
-  var meilk = 0;
-  var meilkpclick = 1;
-  var meilkpsecond = 0;
+  var meilk = parseInt(localStorage['meilkcache']) || 0;
+  var meilkpclick = parseInt(localStorage['mpccache']) || 1;
+  var meilkpsecond = parseInt(localStorage['mpscache']) || 0;
   var cost = 0;
   var antimacro = 0;
+  //ToDo - Cleanup this
   //Shop Upgrades for Items
-  var sic1 = 30;
-  var sic2 = 70;
-  var sic3 = 200;
-  var sic4 = 500;
+  var sic1 = parseInt(localStorage['sic1cache']) || 30;
+  var sic2 = parseInt(localStorage['sic2cache']) || 70;
+  var sic3 = parseInt(localStorage['sic3cache']) || 200;
+  var sic4 = parseInt(localStorage['sic4cache']) || 500;
   //Shop Upgrades for Seconds
-  var sis1 = 20;
-  var sis2 = 100;
-  var sis3 = 250;
-  var sis4 = 475;
-  var sis5 = 750;
+  var sis1 = parseInt(localStorage['sis1cache']) || 20;
+  var sis2 = parseInt(localStorage['sis2cache']) || 100;
+  var sis3 = parseInt(localStorage['sis3cache']) || 250;
+  var sis4 = parseInt(localStorage['sis4cache']) || 475;
+  var sis5 = parseInt(localStorage['sis5cache']) || 750;
 
 
   //Stuff to reload shop :I
@@ -59,7 +60,6 @@ $(document).ready(function(){
     }
   });
 
-
   //Loop
   setInterval(function () {
     meilk += meilkpsecond;
@@ -70,6 +70,23 @@ $(document).ready(function(){
     antimacro = 0;
   }, 1000);
 
+  setInterval(function () {
+    console.log("Caching");
+    localStorage['meilkcache'] = meilk;
+    localStorage['mpscache'] = meilkpsecond;
+    localStorage['mpccache'] = meilkpclick;
+    //ToDo: Simplify this (a.k.a. less spaghetti)
+    localStorage['sic1cache'] = sic1;
+    localStorage['sic2cache'] = sic2;
+    localStorage['sic3cache'] = sic3;
+    localStorage['sic4cache'] = sic4;
+    localStorage['sis1cache'] = sis1;
+    localStorage['sis2cache'] = sis2;
+    localStorage['sis3cache'] = sis3;
+    localStorage['sis4cache'] = sis4;
+    localStorage['sis5cache'] = sis5;
+    console.log("Cached!");
+  }, 5000)
 
   //Shop Items: Per Clicks
   $("#sic1").click(function(){
