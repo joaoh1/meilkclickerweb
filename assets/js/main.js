@@ -9,7 +9,7 @@ $(document).ready(function(){
   //To make Shop Stuff easier!
   function createSi(si, sicost) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
-    console.log(`Creates Si! ${si} ${sicost} ${'si' + si}`);
+    console.log(`Created Si! ${si} ${sicost} ${'si' + si}`);
   }
   //Shop Upgrades for Items
   createSi("c1", 30);
@@ -17,11 +17,11 @@ $(document).ready(function(){
   createSi("c3", 200);
   createSi("c4", 500);
   //Shop Upgrades for Seconds
-  var sis1 = parseInt(localStorage['sis1cache']) || 20;
-  var sis2 = parseInt(localStorage['sis2cache']) || 100;
-  var sis3 = parseInt(localStorage['sis3cache']) || 250;
-  var sis4 = parseInt(localStorage['sis4cache']) || 475;
-  var sis5 = parseInt(localStorage['sis5cache']) || 750;
+  createSi("s1", 20);
+  createSi("s2", 100);
+  createSi("s3", 250);
+  createSi("s4", 475);
+  createSi("s5", 750);
 
   //Stuff to reload shop :I
   function reloadShop() {
@@ -74,24 +74,26 @@ $(document).ready(function(){
     antimacro = 0;
   }, 1000);
 
-  if (cacheenabled = 1) {
-    setInterval(function () {
-    $(".savestatus").text("Saving...").fadeIn(0);
-    localStorage['meilkcache'] = meilk;
-    localStorage['mpscache'] = meilkpsecond;
-    localStorage['mpccache'] = meilkpclick;
-    //ToDo: Simplify this (a.k.a. less spaghetti)
-    localStorage['sic1cache'] = sic1;
-    localStorage['sic2cache'] = sic2;
-    localStorage['sic3cache'] = sic3;
-    localStorage['sic4cache'] = sic4;
-    localStorage['sis1cache'] = sis1;
-    localStorage['sis2cache'] = sis2;
-    localStorage['sis3cache'] = sis3;
-    localStorage['sis4cache'] = sis4;
-    localStorage['sis5cache'] = sis5;
-    $(".savestatus").text("Saved!").delay(500).fadeOut(400);
-  }, 5000)}
+   setInterval(function () {
+     if (localStorage['cacheenabled'] == "true") {
+       $(".savestatus").text("Saving...").fadeIn(0);
+       localStorage['meilkcache'] = meilk;
+       localStorage['mpscache'] = meilkpsecond;
+       localStorage['mpccache'] = meilkpclick;
+       //ToDo: Simplify this (a.k.a. less spaghetti)
+       localStorage['sic1cache'] = sic1;
+       localStorage['sic2cache'] = sic2;
+       localStorage['sic3cache'] = sic3;
+       localStorage['sic4cache'] = sic4;
+       localStorage['sis1cache'] = sis1;
+       localStorage['sis2cache'] = sis2;
+       localStorage['sis3cache'] = sis3;
+       localStorage['sis4cache'] = sis4;
+       localStorage['sis5cache'] = sis5;
+       console.log("test");
+       $(".savestatus").text("Saved!").delay(500).fadeOut(500);
+     }
+   }, 5000);
 
   //Shop Items: Per Clicks
   $("#sic1").click(function(){
@@ -195,6 +197,19 @@ $(document).ready(function(){
   $("body").keydown(function(event){
     if (event.keyCode == 82 ) {
       reloadShop();
+    }
+  });
+
+  //P Keybind to enable caching
+  $("body").keydown(function(event){
+    if (event.keyCode == 80 ) {
+      if (localStorage['cacheenabled'] == "false") {
+        console.log("PPressed");
+        localStorage['cacheenabled'] = "true"
+      } else {
+        localStorage['cacheenabled'] = "false";
+        console.log("P Disabled");
+      }
     }
   });
 
