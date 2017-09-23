@@ -4,7 +4,8 @@ $(document).ready(function(){
   var meilkpclick = parseInt(localStorage['mpccache']) || 1;
   var meilkpsecond = parseInt(localStorage['mpscache']) || 0;
   var cost = 0;
-  var cacheenabled = 0;
+  var siccount = 4;
+  var siscount = 5;
   var antimacro = 0;
   //To make Shop Stuff easier!
   function createSi(si, sicost) {
@@ -25,18 +26,18 @@ $(document).ready(function(){
 
   //Stuff to reload shop :I
   function reloadShop() {
-    var sicloading = 1;
-    var sisloading = 1;
-    var sicloading2 = 1;
-    var sisloading2 = 1;
-    while (sicloading < 5) {
+    let sicloading = 1;
+    let sisloading = 1;
+    let sicloading2 = 1;
+    let sisloading2 = 1;
+    while (sicloading =< siccount) {
        eval(`sic${sicloading} = Math.floor(sic${sicloading});`);
        sicloading2 = eval(`sic${sicloading}`);
        $(`#sicl${sicloading}`).text(`${sicloading2} Meilk`);
        sicloading++;
        console.log(`Sic Loading ${sicloading};${sicloading2};`);
     }
-    while (sisloading < 6) {
+    while (sisloading =< siscount) {
        eval(`sis${sisloading} = Math.floor(sis${sisloading});`);
        sisloading2 = eval(`sis${sisloading}`);
        $(`#sisl${sisloading}`).text(`${sisloading2} Meilk`);
@@ -74,6 +75,7 @@ $(document).ready(function(){
     antimacro = 0;
   }, 1000);
 
+   //Cache Stuff
    setInterval(function () {
      if (localStorage['cacheenabled'] == "true") {
        $(".savestatus").text("Saving...").fadeIn(0);
@@ -81,17 +83,19 @@ $(document).ready(function(){
        localStorage['mpscache'] = meilkpsecond;
        localStorage['mpccache'] = meilkpclick;
        //ToDo: Simplify this (a.k.a. less spaghetti)
-       localStorage['sic1cache'] = sic1;
-       localStorage['sic2cache'] = sic2;
-       localStorage['sic3cache'] = sic3;
-       localStorage['sic4cache'] = sic4;
-       localStorage['sis1cache'] = sis1;
-       localStorage['sis2cache'] = sis2;
-       localStorage['sis3cache'] = sis3;
-       localStorage['sis4cache'] = sis4;
-       localStorage['sis5cache'] = sis5;
-       console.log("test");
-       $(".savestatus").text("Saved!").delay(500).fadeOut(500);
+       let siccaching = 1;
+       while (siccaching < 5) {
+          eval(`localStorage['sic${siccaching}cache'] = sic${siccaching};`);
+          console.log(`Caching Sic: ${siccaching}`);
+          siccaching++;
+       }
+       let siscaching = 1;
+       while (siscaching < 6) {
+          eval(`localStorage['sis${siscaching}cache'] = sis${siscaching};`);
+          console.log(`Caching Sis: ${siscaching}`);
+          siscaching++;
+       }
+       $(".savestatus").text("Saved!").delay(500).fadeOut(600);
      }
    }, 5000);
 
@@ -193,22 +197,37 @@ $(document).ready(function(){
     }
   }
 
-  //R Keybind to reload shop
   $("body").keydown(function(event){
+    //R Keybind to reload shop
     if (event.keyCode == 82 ) {
       reloadShop();
     }
-  });
 
-  //P Keybind to enable caching
-  $("body").keydown(function(event){
+    //P Keybind to toggle caching
     if (event.keyCode == 80 ) {
-      if (localStorage['cacheenabled'] == "false") {
+      if (localStorage['cacheenabled'] == "true") {
+        localStorage['cacheenabled'] = undefined;
+        console.log("P Disabled");
+        $(".savestatus").text("Caching: Disabled").fadeIn(0).delay(500).fadeOut(600);
+        localStorage['meilkcache'] = undefined;
+        localStorage['mpscache'] = undefined;
+        localStorage['mpccache'] = undefined;
+        let siccleaning = 1;
+        while (siccleaning =< siccount) {
+           eval(`localStorage['sic${siccleaning}cache'] = undefined;`);
+           console.log(`Cleaning Sic Cache: ${siccleaning}`);
+           siccleaning++;
+        }
+        let siscleaning = 1;
+        while (siscleaning =< siscount) {
+           eval(`localStorage['sis${siscleaning}cache'] = undefined`);
+           console.log(`Cleaning Sis Cache: ${siscleaning}`);
+           siscleaning++;
+        }
+      } else {
         console.log("PPressed");
         localStorage['cacheenabled'] = "true"
-      } else {
-        localStorage['cacheenabled'] = "false";
-        console.log("P Disabled");
+        $(".savestatus").text("Caching: Enabled").fadeIn(0).delay(500).fadeOut(600);
       }
     }
   });
