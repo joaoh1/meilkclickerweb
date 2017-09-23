@@ -71,7 +71,7 @@ $(document).ready(function(){
   }, 1000);
 
   setInterval(function () {
-    console.log("Caching");
+    $(".savestatus").text("Saving...").fadeIn(0);
     localStorage['meilkcache'] = meilk;
     localStorage['mpscache'] = meilkpsecond;
     localStorage['mpccache'] = meilkpclick;
@@ -85,7 +85,7 @@ $(document).ready(function(){
     localStorage['sis3cache'] = sis3;
     localStorage['sis4cache'] = sis4;
     localStorage['sis5cache'] = sis5;
-    console.log("Cached!");
+    $(".savestatus").text("Saved!").delay(500).fadeOut(400);
   }, 5000)
 
   //Shop Items: Per Clicks
