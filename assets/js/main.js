@@ -8,21 +8,23 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   //To make Shop Stuff easier!
-  function createSi(si, sicost) {
+  function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
-    console.log(`Created Si! ${si} ${sicost} ${'si' + si}`);
+    eval(`sihtml = '<li class="shopitem" id="si${si}"><p class="shopitem1">${sin}</p><p id="lsi${si}" class="shopitem2"> </p></li>';`);
+    eval(`$("#cu${cuid}").append(sihtml);`);
+    console.log(`Created Si! ${si} ${sicost} ${'si' + si} ${cuid} ${sihtml}`);
   }
   //Shop Upgrades for Items
-  createSi("c1", 30);
-  createSi("c2", 70);
-  createSi("c3", 200);
-  createSi("c4", 500);
+  createSi("c1", 30, "Better Meilk", 1);
+  createSi("c2", 70, "Moo Meilk", 1);
+  createSi("c3", 200, "Super Meilk", 1);
+  createSi("c4", 500, "Crazy Meilk", 1);
   //Shop Upgrades for Seconds
-  createSi("s1", 20);
-  createSi("s2", 100);
-  createSi("s3", 250);
-  createSi("s4", 475);
-  createSi("s5", 750);
+  createSi("s1", 20, "Auto Meilker", 2);
+  createSi("s2", 100, "Meilk Farm", 2);
+  createSi("s3", 250, "Meilk Mine", 2);
+  createSi("s4", 475, "Meilk Drill", 2);
+  createSi("s5", 750, "Meilk Rocket", 2);
 
   //Stuff to reload shop :I
   function reloadShop() {
@@ -33,14 +35,14 @@ $(document).ready(function(){
     while (sicloading <= siccount) {
        eval(`sic${sicloading} = Math.floor(sic${sicloading});`);
        sicloading2 = eval(`sic${sicloading}`);
-       $(`#sicl${sicloading}`).text(`${sicloading2} Meilk`);
+       $(`#lsic${sicloading}`).text(`${sicloading2} Meilk`);
        sicloading++;
        console.log(`Sic Loading ${sicloading};${sicloading2};`);
     }
     while (sisloading <= siscount) {
        eval(`sis${sisloading} = Math.floor(sis${sisloading});`);
        sisloading2 = eval(`sis${sisloading}`);
-       $(`#sisl${sisloading}`).text(`${sisloading2} Meilk`);
+       $(`#lsis${sisloading}`).text(`${sisloading2} Meilk`);
        sisloading++;
        console.log(`Sis Loading ${sisloading};${sisloading2};`);
     }
@@ -196,7 +198,7 @@ $(document).ready(function(){
       reloadShop();
     }
   }
-
+  //Keybinds!
   $("body").keydown(function(event){
     //R Keybind to reload shop
     if (event.keyCode == 82 ) {
