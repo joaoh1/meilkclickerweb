@@ -29,7 +29,14 @@
       </ul>
     </div>
     <div class="version">
-      <p>v0.2-28</p>
+      <div id="saveinput">
+        <input type="text" name="Save Input" value="">
+      </div>
+      <div id="loadinput">
+        <li class="loadbutton">Load</li>
+        <input id="loadinput2" type="text" height="147px" width="23px" name="Load Input" value="">
+      </div>
+      <p id="version">v0.0-00</p>
     </div>
     <p class="savestatus"></p>
   </body>
@@ -47,6 +54,24 @@
     p {
       margin-bottom: 3px;
       margin-top: 3px;
+    }
+
+    .loadbutton {
+      position: absolute;
+      bottom: 0;
+      up: 0;
+      margin-left: 0px;
+      border-width: 5px;
+      border-style: solid;
+      font-family: "Comic Sans MS", sans-serif;
+      border-color: #CCBB22;
+      background-color: #EEE697;
+      font-weight: bold;
+    }
+
+    .loadbutton:active {
+      border-color: #B5A61E;
+      background-color: #E8DB6C;
     }
 
     .version {

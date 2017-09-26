@@ -7,6 +7,8 @@ $(document).ready(function(){
   var siccount = 4;
   var siscount = 5;
   var antimacro = 0;
+  var version = "0.2";
+  var buildnumber = "29";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
@@ -49,6 +51,9 @@ $(document).ready(function(){
   }
 
   //Set the meilk count
+  $("#saveinput").hide();
+  $("#loadinput").hide();
+  $("#version").text(`v${version}-${buildnumber}`)
   $(".meilkstats").text(`${meilk} Meilk`);
   $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);
   $(".mpcstats").text(`${meilkpclick} Meilk / Click`);
@@ -84,7 +89,6 @@ $(document).ready(function(){
        localStorage['meilkcache'] = meilk;
        localStorage['mpscache'] = meilkpsecond;
        localStorage['mpccache'] = meilkpclick;
-       //ToDo: Simplify this (a.k.a. less spaghetti)
        let siccaching = 1;
        while (siccaching <= siccount) {
           eval(`localStorage['sic${siccaching}cache'] = sic${siccaching};`);
@@ -198,12 +202,44 @@ $(document).ready(function(){
       reloadShop();
     }
   }
+
+  //Prepare the loading!
+  function prepareLoad() {
+    var codetoload = document.getElementById('loadinput2').value
+    console.log(codetoload);
+    loadGame(codetoload);
+  }
+
   //Keybinds!
   $("body").keydown(function(event){
     //R Keybind to reload shop
     if (event.keyCode == 82 ) {
       reloadShop();
     }
+
+    //Save dah game
+    if (event.keyCode == 83 ) {
+      saveGame();
+    }
+
+    //Show options to load
+    if (event.keyCode == 76 ) {
+      $("#saveinput").hide();
+      $("#loadinput").html(`<input type="text" id="loadinput2" name="Load Input" value="Insert your code here">
+      <button class="loadbutton">Load</p>`);
+      $("#loadinput").show();
+    }
+
+    //Hide the options
+    if (event.keyCode == 27 ) {
+      $("#saveinput").hide();
+      $("#loadinput").hide();
+    }
+
+    //"Load" button
+    $(".loadbutton").click(function(){
+      prepareLoad();
+    });
 
     //P Keybind to toggle caching
     if (event.keyCode == 80 ) {
@@ -233,6 +269,63 @@ $(document).ready(function(){
       }
     }
   });
+
+  //Saving
+  function saveGame() {
+    let savecode = `Meilk Clicker;${version};${buildnumber};${meilk};${meilkpclick};${meilkpsecond};`
+    let saveshopc = 1
+    let saveshopc2 = 1;
+    while (saveshopc <= siccount) {
+      eval(`saveshopc2 = sic${saveshopc}`);
+      savecode += saveshopc2;
+      savecode += ";";
+      saveshopc++
+      console.log(savecode);
+    }
+    let saveshops = 1
+    let saveshops2 = 1
+    while (saveshops <= siscount) {
+      eval(`saveshops2 = sis${saveshops}`);
+      savecode += saveshops2;
+      savecode += ";";
+      saveshops++
+      console.log(savecode);
+    }
+    savecode = window.btoa(savecode);
+    console.log(savecode);
+    $("#saveinput").show();
+    $("#saveinput").html(`<input type="text" name="Save Input" value="${savecode}">`);
+    $("#loadinput").hide();
+    console.log("Save Done");
+  }
+
+  //Loading
+  function loadGame(loadcode) {
+    loadcode = atob(loadcode);
+    loadcode = loadcode.split(";");
+    console.log(loadcode);
+    meilk = parseInt(loadcode[3]);
+    meilkpclick = parseInt(loadcode[4]);
+    meilkpsecond = parseInt(loadcode[5]);
+    let sicsaveload = 1;
+    let sicsaveload2 = 1;
+    while (sicsaveload <= siccount) {
+      eval(`sicsaveload2 = ${sicsaveload} + 5;`);
+      eval(`sic${sicsaveload} = parseInt(loadcode[${sicsaveload2}]);`);
+      sicsaveload++
+    }
+    let sissaveload = 1;
+    let sissaveload2 = 1;
+    while (sissaveload <= siscount) {
+      eval(`sissaveload2 = ${sissaveload} + 5 + ${siccount};`);
+      eval(`sis${sissaveload} = parseInt(loadcode[${sissaveload2}]);`);
+      sissaveload++
+    }
+    $(".meilkstats").text(`${meilk} Meilk`);
+    $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);
+    $(".mpcstats").text(`${meilkpclick} Meilk / Click`);
+    reloadShop();
+  }
 
   //Button Visuals
   $(".shopitem").mousedown(function(){
