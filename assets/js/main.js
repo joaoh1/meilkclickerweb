@@ -8,7 +8,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "30";
+  var buildnumber = "31";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
@@ -53,8 +53,6 @@ $(document).ready(function(){
   }
 
   //Set the meilk count
-  $("#saveinput").hide();
-  $("#loadinput").hide();
   $("#version").text(`v${version}-${buildnumber}`)
   $(".meilkstats").text(`${meilk} Meilk`);
   $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);
@@ -228,16 +226,17 @@ $(document).ready(function(){
 
     //Show options to load
     if (event.keyCode == 76 ) {
-      $("#saveinput").hide();
-      $("#loadinput").html(`<input type="text" id="loadinput2" name="Load Input" value="Insert your code here">
-      <button class="loadbutton">Load</p>`);
-      $("#loadinput").show();
+      $(".meilkoptions").show();
+      $("#menucontent").html(`
+        <p>Paste your Save Code!</p>
+        <input id="loadinput2" type="text" name="Load Input" value="">
+        <p></p>
+        <button class="loadbutton">Load</p>`);
     }
 
     //Hide the options
     if (event.keyCode == 27 ) {
-      $("#saveinput").hide();
-      $("#loadinput").hide();
+      $(".meilkoptions").hide();
     }
 
     //"Load" button
@@ -302,9 +301,10 @@ $(document).ready(function(){
     }
     savecode = window.btoa(savecode);
     console.log(savecode);
-    $("#saveinput").show();
-    $("#saveinput").html(`<input type="text" name="Save Input" value="${savecode}">`);
-    $("#loadinput").hide();
+    $(".meilkoptions").show();
+    $("#menucontent").html(`
+      <p>Copy your Save Code!</p>
+      <input type="text" name="Save Input" value="${savecode}">`);
     console.log("Save Done");
   }
 
@@ -343,11 +343,16 @@ $(document).ready(function(){
     $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);
     $(".mpcstats").text(`${meilkpclick} Meilk / Click`);
     reloadShop();
+    $(".meilkoptions").hide();
   }
 
   //Button Visuals
   $(".shopitem").mousedown(function(){
     $(this).css({"border-color": "#B5A61E", "background-color": "#E8DB6C"});
+  });
+
+  $(".closemenu").click(function(){
+    $(".meilkoptions").css({"display": "none"});
   });
 
   $("body").mouseup(function(){

@@ -16,8 +16,13 @@
   <body>
     <div class="meilkoptions" style="display: none;">
       <div class="meilkoptionsmenu">
-        <p>Lorem ipsum dolor sit amet.</p>
-
+        <div class="closemenu">
+          <p>X</p>
+        </div>
+        <div id="menucontent">
+          <p>you saw nothing, ssssh</p>
+          <input type="text" name="Save Input" value="">
+        </div>
       </div>
 
     </div>
@@ -36,13 +41,6 @@
       </ul>
     </div>
     <div class="version">
-      <div id="saveinput" style="display: none;">
-        <input type="text" name="Save Input" value="">
-      </div>
-      <div id="loadinput" style="display: none;">
-        <li class="loadbutton">Load</li>
-        <input id="loadinput2" type="text" height="147px" width="23px" name="Load Input" value="">
-      </div>
       <p id="version">v0.0-00</p>
     </div>
     <p class="savestatus"></p>
@@ -75,9 +73,9 @@
       height: 100%;
       width: 100%;
       display: flex;
-      align-items: center;
       text-align: center;
       align-content: center;
+      align-items: center;
       justify-content: center;
     }
 
@@ -86,13 +84,20 @@
       padding: 15px;
     }
 
+    .closemenu {
+      position: relative;
+      overflow: auto;
+      text-align: right;
+      right: 0;
+      top: 0;
+    }
+
     .loadbutton {
-      position: absolute;
-      bottom: 0;
-      up: 0;
-      margin-left: 0px;
+      position: relative;
       border-width: 5px;
+      padding: 5px;
       border-style: solid;
+      text-align: center;
       font-family: "Comic Sans MS", sans-serif;
       border-color: #CCBB22;
       background-color: #EEE697;
