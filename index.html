@@ -14,6 +14,13 @@
     <script src="./assets/js/main.js" charset="utf-8"></script>
   </head>
   <body>
+    <div class="meilkoptions" style="display: none;">
+      <div class="meilkoptionsmenu">
+        <p>Lorem ipsum dolor sit amet.</p>
+
+      </div>
+
+    </div>
     <div class="meilkarea">
       <p class="meilkstats"> Meilk</p>
       <img src="./assets/img/meilk.png" alt="Meilk!" class="meilk" draggable="false">
@@ -29,10 +36,10 @@
       </ul>
     </div>
     <div class="version">
-      <div id="saveinput">
+      <div id="saveinput" style="display: none;">
         <input type="text" name="Save Input" value="">
       </div>
-      <div id="loadinput">
+      <div id="loadinput" style="display: none;">
         <li class="loadbutton">Load</li>
         <input id="loadinput2" type="text" height="147px" width="23px" name="Load Input" value="">
       </div>
@@ -45,15 +52,38 @@
       background-color: #EEEEEE;
       color: #333333;
       -webkit-user-select: none;
+      -webkit-user-drag: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+      user-drag: none;
       font-family: "Comic Sans MS", sans-serif;
     }
 
     p {
       margin-bottom: 3px;
       margin-top: 3px;
+    }
+
+    .meilkoptions {
+      position: fixed;
+      margin: 0;
+      padding: 0;
+      top: 0;
+      left: 0;
+      background-color: rgba(150, 150, 150, 0.5);
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      align-content: center;
+      justify-content: center;
+    }
+
+    .meilkoptionsmenu {
+      background-color: #EFEFEF;
+      padding: 15px;
     }
 
     .loadbutton {

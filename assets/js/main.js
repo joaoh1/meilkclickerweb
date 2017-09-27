@@ -8,12 +8,12 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "29";
+  var buildnumber = "30";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
-    eval(`sihtml = '<li class="shopitem" id="si${si}"><p class="shopitem1">${sin}</p><p id="lsi${si}" class="shopitem2"> </p></li>';`);
-    eval(`$("#cu${cuid}").append(sihtml);`);
+    sihtml = `<li class="shopitem" id="si${si}"><p class="shopitem1">${sin}</p><p id="lsi${si}" class="shopitem2"> </p></li>`;
+    $(`#cu${cuid}`).append(sihtml);
     console.log(`Created Si! ${si} ${sicost} ${'si' + si} ${cuid} ${sihtml}`);
   }
   //Shop Upgrades for Items
@@ -30,23 +30,25 @@ $(document).ready(function(){
 
   //Stuff to reload shop :I
   function reloadShop() {
-    let sicloading = 1;
-    let sisloading = 1;
-    let sicloading2 = 1;
-    let sisloading2 = 1;
-    while (sicloading <= siccount) {
-       eval(`sic${sicloading} = Math.floor(sic${sicloading});`);
-       sicloading2 = eval(`sic${sicloading}`);
-       $(`#lsic${sicloading}`).text(`${sicloading2} Meilk`);
-       sicloading++;
-       console.log(`Sic Loading ${sicloading};${sicloading2};`);
+    let siloading = 1;
+    let siloading2 = 1;
+    let siloading3 = 0;
+    while (siloading <= siccount && siloading3 == 0 ) {
+       eval(`sic${siloading} = Math.floor(sic${siloading});`);
+       siloading2 = eval(`sic${siloading}`);
+       $(`#lsic${siloading}`).text(`${siloading2} Meilk`);
+       siloading++;
+       console.log(`Sic Loading ${siloading};${siloading2};${siloading3};`);
     }
-    while (sisloading <= siscount) {
-       eval(`sis${sisloading} = Math.floor(sis${sisloading});`);
-       sisloading2 = eval(`sis${sisloading}`);
-       $(`#lsis${sisloading}`).text(`${sisloading2} Meilk`);
-       sisloading++;
-       console.log(`Sis Loading ${sisloading};${sisloading2};`);
+    siloading = 1;
+    siloading2 = 1;
+    siloading3 = 1;
+    while (siloading <= siscount && siloading3 == 1) {
+       eval(`sis${siloading} = Math.floor(sis${siloading});`);
+       siloading2 = eval(`sis${siloading}`);
+       $(`#lsis${siloading}`).text(`${siloading2} Meilk`);
+       siloading++;
+       console.log(`Sis Loading ${siloading};${siloading2};${siloading3};`);
     }
   }
 
@@ -61,7 +63,7 @@ $(document).ready(function(){
 
   //Meilk Clicker!
   $(".meilk").click(function(){
-    if (antimacro < 21) {
+    if (antimacro <= 20) {
       meilk += meilkpclick
       console.log(`Meilk: ${meilk}; MPC: ${meilkpclick};`);
       $(".meilkstats").text(`${meilk} Meilk`);
@@ -89,17 +91,19 @@ $(document).ready(function(){
        localStorage['meilkcache'] = meilk;
        localStorage['mpscache'] = meilkpsecond;
        localStorage['mpccache'] = meilkpclick;
-       let siccaching = 1;
-       while (siccaching <= siccount) {
-          eval(`localStorage['sic${siccaching}cache'] = sic${siccaching};`);
-          console.log(`Caching Sic: ${siccaching}`);
-          siccaching++;
+       let sicaching = 1;
+       let sicaching2 = 0;
+       while (sicaching <= siccount && sicaching2 == 0) {
+          eval(`localStorage['sic${sicaching}cache'] = sic${sicaching};`);
+          console.log(`Caching Sic: ${sicaching}`);
+          sicaching++;
        }
-       let siscaching = 1;
-       while (siscaching <= siscount) {
-          eval(`localStorage['sis${siscaching}cache'] = sis${siscaching};`);
-          console.log(`Caching Sis: ${siscaching}`);
-          siscaching++;
+       sicaching = 1;
+       sicaching2 = 1;
+       while (sicaching <= siscount && sicaching2 == 1) {
+          eval(`localStorage['sis${sicaching}cache'] = sis${sicaching};`);
+          console.log(`Caching Sis: ${sicaching}`);
+          sicaching++;
        }
        $(".savestatus").text("Saved!").delay(500).fadeOut(600);
      }
@@ -250,17 +254,19 @@ $(document).ready(function(){
         localStorage['meilkcache'] = undefined;
         localStorage['mpscache'] = undefined;
         localStorage['mpccache'] = undefined;
-        let siccleaning = 1;
-        while (siccleaning <= siccount) {
-           eval(`localStorage['sic${siccleaning}cache'] = undefined;`);
-           console.log(`Cleaning Sic Cache: ${siccleaning}`);
-           siccleaning++;
+        let sicleaning = 1;
+        let sicleaning2 = 0;
+        while (sicleaning <= siccount && sicleaning2 == 0) {
+           eval(`localStorage['sic${sicleaning}cache'] = undefined;`);
+           console.log(`Cleaning Sic Cache: ${sicleaning}`);
+           sicleaning++;
         }
-        let siscleaning = 1;
-        while (siscleaning <= siscount) {
-           eval(`localStorage['sis${siscleaning}cache'] = undefined`);
-           console.log(`Cleaning Sis Cache: ${siscleaning}`);
-           siscleaning++;
+        sicleaning = 1;
+        sicleaning2 = 1;
+        while (sicleaning <= siscount && sicleaning2 == 1) {
+           eval(`localStorage['sis${sicleaning}cache'] = undefined`);
+           console.log(`Cleaning Sis Cache: ${sicleaning}`);
+           sicleaning++;
         }
       } else {
         console.log("PPressed");
@@ -273,22 +279,25 @@ $(document).ready(function(){
   //Saving
   function saveGame() {
     let savecode = `Meilk Clicker;${version};${buildnumber};${meilk};${meilkpclick};${meilkpsecond};`
-    let saveshopc = 1
-    let saveshopc2 = 1;
-    while (saveshopc <= siccount) {
-      eval(`saveshopc2 = sic${saveshopc}`);
-      savecode += saveshopc2;
+    let saveshop1 = 1;
+    let saveshop2 = 1;
+    let saveshop3 = 0;
+    console.log(savecode);
+    while (saveshop1 <= siccount && saveshop3 == 0) {
+      eval(`saveshop2 = sic${saveshop1}`);
+      savecode += saveshop2;
       savecode += ";";
-      saveshopc++
+      saveshop1++;
       console.log(savecode);
     }
-    let saveshops = 1
-    let saveshops2 = 1
-    while (saveshops <= siscount) {
-      eval(`saveshops2 = sis${saveshops}`);
-      savecode += saveshops2;
+    saveshop1 = 1;
+    saveshop2 = 1;
+    saveshop3 = 1;
+    while (saveshop1 <= siscount && saveshop3 == 1) {
+      eval(`saveshop2 = sis${saveshop1}`);
+      savecode += saveshop2;
       savecode += ";";
-      saveshops++
+      saveshop1++
       console.log(savecode);
     }
     savecode = window.btoa(savecode);
@@ -304,22 +313,31 @@ $(document).ready(function(){
     loadcode = atob(loadcode);
     loadcode = loadcode.split(";");
     console.log(loadcode);
+    if (version != loadcode[1] || loadcode[0] != "Meilk Clicker") {
+      loadcode = "Meilk Clicker;0.2;29;0;1;0;30;70;200;500;20;100;250;475;750;"
+      loadcode = loadcode.split(";");
+      console.error("Error!");
+      console.error("Possibility 1: This isn't a Meilk Clicker code");
+      console.error("Possibility 2: The version isn't the same as the current one!");
+    }
     meilk = parseInt(loadcode[3]);
     meilkpclick = parseInt(loadcode[4]);
     meilkpsecond = parseInt(loadcode[5]);
-    let sicsaveload = 1;
-    let sicsaveload2 = 1;
-    while (sicsaveload <= siccount) {
-      eval(`sicsaveload2 = ${sicsaveload} + 5;`);
-      eval(`sic${sicsaveload} = parseInt(loadcode[${sicsaveload2}]);`);
-      sicsaveload++
+    let sisaveload = 1;
+    let sisaveload2 = 1;
+    let sisaveload3 = 0;
+    while (sisaveload <= siccount && sisaveload3 == 0) {
+      eval(`sisaveload2 = ${sisaveload} + 5;`);
+      eval(`sic${sisaveload} = parseInt(loadcode[${sisaveload2}]);`);
+      sisaveload++
     }
-    let sissaveload = 1;
-    let sissaveload2 = 1;
-    while (sissaveload <= siscount) {
-      eval(`sissaveload2 = ${sissaveload} + 5 + ${siccount};`);
-      eval(`sis${sissaveload} = parseInt(loadcode[${sissaveload2}]);`);
-      sissaveload++
+    sisaveload = 1;
+    sisaveload2 = 1;
+    sisaveload3 = 1;
+    while (sisaveload <= siscount && sisaveload3 == 1) {
+      eval(`sisaveload2 = ${sisaveload} + 5 + ${siccount};`);
+      eval(`sis${sisaveload} = parseInt(loadcode[${sisaveload2}]);`);
+      sisaveload++
     }
     $(".meilkstats").text(`${meilk} Meilk`);
     $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);
