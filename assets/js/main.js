@@ -8,7 +8,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "33";
+  var buildnumber = "34";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
