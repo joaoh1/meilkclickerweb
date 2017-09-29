@@ -30,7 +30,8 @@ $(document).ready(function(){
 
   //Stuff to reload shop :I
   function reloadShop() {
-    let siloading, siloading2 = 1;
+    let siloading = 1;
+    let siloading2 = 1;
     let siloading3 = 0;
     while (siloading <= siccount && siloading3 == 0 ) {
        eval(`sic${siloading} = Math.floor(sic${siloading});`);
