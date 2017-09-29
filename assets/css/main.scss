@@ -1,11 +1,17 @@
-body {
+$font: "Comic Sans MS", sans-serif;
+
+@mixin user-select-drag {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+body {
+  @include user-select-drag();
   background-color: #eee;
   color: #333;
-  font-family: "Comic Sans MS", sans-serif;
+  font-family: $font;
 }
 
 p {
@@ -19,7 +25,7 @@ p {
   padding: 0;
   top: 0;
   left: 0;
-  background-color: rgba(150, 150, 150, 0.5);
+  background-color: rgba(150, 150, 150, .5);
   height: 100%;
   width: 100%;
   display: flex;
@@ -118,16 +124,16 @@ p {
 
 .clickupgrades {
   list-style-type: none;
-}
 
-.clickupgrades li {
-  width: 140px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #cb2;
-  background-color: #eee697;
-  margin-bottom: 5px;
-  font-size: 20px;
+  li {
+    width: 140px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #cb2;
+    background-color: #eee697;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
 }
 
 .shopitem1 {

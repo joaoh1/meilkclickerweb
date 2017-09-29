@@ -1,10 +1,12 @@
 body {
+  background-color: #EEEEEE;
+  color: #333333;
   -webkit-user-select: none;
+  -webkit-user-drag: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: #eee;
-  color: #333;
+  user-drag: none;
   font-family: "Comic Sans MS", sans-serif;
 }
 
@@ -30,7 +32,7 @@ p {
 }
 
 .meilkoptionsmenu {
-  background-color: #efefef;
+  background-color: #EFEFEF;
   padding: 15px;
 }
 
@@ -49,14 +51,14 @@ p {
   border-style: solid;
   text-align: center;
   font-family: "Comic Sans MS", sans-serif;
-  border-color: #cb2;
-  background-color: #eee697;
+  border-color: #CCBB22;
+  background-color: #EEE697;
   font-weight: bold;
 }
 
 .loadbutton:active {
-  border-color: #b5a61e;
-  background-color: #e8db6c;
+  border-color: #B5A61E;
+  background-color: #E8DB6C;
 }
 
 .version {
@@ -92,7 +94,7 @@ p {
   text-align: center;
   height: 256px;
   width: 256px;
-  margin: 5%;
+  margin: 5% 5% 5% 5%;
 }
 
 .meilkstats {
@@ -124,8 +126,8 @@ p {
   width: 140px;
   border-width: 5px;
   border-style: solid;
-  border-color: #cb2;
-  background-color: #eee697;
+  border-color: #CCBB22;
+  background-color: #EEE697;
   margin-bottom: 5px;
   font-size: 20px;
 }
