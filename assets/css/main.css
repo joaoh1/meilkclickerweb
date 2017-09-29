@@ -14,19 +14,19 @@ p {
 }
 
 .meilkoptions {
-  position: fixed;
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  background-color: rgba(150, 150, 150, 0.5);
-  height: 100%;
-  width: 100%;
-  display: flex;
-  text-align: center;
   align-content: center;
   align-items: center;
+  background-color: rgba(150, 150, 150, 0.5);
+  display: flex;
+  height: 100%;
   justify-content: center;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
 }
 
 .meilkoptionsmenu {
@@ -35,23 +35,23 @@ p {
 }
 
 .closemenu {
-  position: relative;
   overflow: auto;
-  text-align: right;
+  position: relative;
   right: 0;
+  text-align: right;
   top: 0;
 }
 
 .loadbutton {
-  position: relative;
-  border-width: 5px;
-  padding: 5px;
-  border-style: solid;
-  text-align: center;
-  font-family: "Comic Sans MS", sans-serif;
-  border-color: #cb2;
   background-color: #eee697;
+  border-color: #cb2;
+  border-style: solid;
+  border-width: 5px;
+  font-family: "Comic Sans MS", sans-serif;
   font-weight: bold;
+  padding: 5px;
+  position: relative;
+  text-align: center;
 }
 
 .loadbutton:active {
@@ -100,12 +100,7 @@ p {
   font-weight: bold;
 }
 
-.mpsstats {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.mpcstats {
+.mpcstats, .mpsstats {
   font-size: 25px;
   font-weight: bold;
 }
@@ -116,11 +111,11 @@ p {
   float: right;
 }
 
-.clickupgrades {
+.shopupgrades {
   list-style-type: none;
 }
 
-.clickupgrades li {
+.shopupgrades li {
   width: 140px;
   border-width: 5px;
   border-style: solid;
