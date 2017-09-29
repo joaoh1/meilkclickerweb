@@ -8,7 +8,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "34";
+  var buildnumber = "35";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
@@ -30,8 +30,7 @@ $(document).ready(function(){
 
   //Stuff to reload shop :I
   function reloadShop() {
-    let siloading = 1;
-    let siloading2 = 1;
+    let siloading, siloading2 = 1;
     let siloading3 = 0;
     while (siloading <= siccount && siloading3 == 0 ) {
        eval(`sic${siloading} = Math.floor(sic${siloading});`);
