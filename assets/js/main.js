@@ -8,7 +8,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "40";
+  var buildnumber = "41";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
@@ -107,89 +107,30 @@ $(document).ready(function(){
      }
    }, 5000);
 
+  //Simplify the shop item click checks!
+  function siCheck(si, simpc, simps) {
+    eval(`$("#si${si}").click(function(){
+      cost = si${si};
+      if (meilk >= cost) {
+        si${si} *= 12;
+        si${si} /= 10;
+        purchase(${simpc},${simps});
+      }
+    });`)
+  }
+
   //Shop Items: Per Clicks
-  $("#sic1").click(function(){
-    cost = sic1;
-    if (meilk >= cost) {
-      sic1 *= 12;
-      sic1 /= 10;
-      purchase(1,0);
-    }
-  });
-
-  $("#sic2").click(function(){
-    cost = sic2;
-    if (meilk >= cost) {
-      sic2 *= 12;
-      sic2 /= 10;
-      purchase(4,0);
-    }
-  });
-
-  $("#sic3").click(function(){
-    cost = sic3;
-    if (meilk >= cost) {
-      sic3 *= 12;
-      sic3 /= 10;
-      purchase(7,0);
-    }
-  });
-
-  $("#sic4").click(function(){
-    cost = sic4;
-    if (meilk >= cost) {
-      sic4 *= 12;
-      sic4 /= 10;
-      purchase(12,0);
-    }
-  });
+  siCheck("c1", 1, 0);
+  siCheck("c2", 4, 0);
+  siCheck("c3", 7, 0);
+  siCheck("c4", 12, 0);
 
   //Shop Items: Per Seconds
-  $("#sis1").click(function(){
-    cost = sis1;
-    sis1 = Math.floor(sis1);
-    if (meilk >= cost) {
-      sis1 *= 12;
-      sis1 /= 10;
-      purchase(0,1);
-    }
-  });
-
-  $("#sis2").click(function(){
-    cost = sis2;
-    if (meilk >= cost) {
-      sis2 *= 12;
-      sis2 /= 10;
-      purchase(0,3);
-    }
-  });
-
-  $("#sis3").click(function(){
-    cost = sis3;
-    if (meilk >= cost) {
-      sis3 *= 12;
-      sis3 /= 10;
-      purchase(0,7);
-    }
-  });
-
-  $("#sis4").click(function(){
-    cost = sis4;
-    if (meilk >= cost) {
-      sis4 *= 12;
-      sis4 /= 10;
-      purchase(0,10);
-    }
-  });
-
-  $("#sis5").click(function(){
-    cost = sis5;
-    if (meilk >= cost) {
-      sis5 *= 12;
-      sis5 /= 10;
-      purchase(0,10);
-    }
-  });
+  siCheck("s1", 0, 1);
+  siCheck("s2", 0, 3);
+  siCheck("s3", 0, 7);
+  siCheck("s4", 0, 10);
+  siCheck("s5", 0, 10);
 
   //le purchase stuff :I
   function purchase(mpcp, mpsp) {
