@@ -1,3 +1,9 @@
+/**
+Meilk Clicker Web:
+A game full of inside jokes.
+Original made by MrMoo_
+Original Recreation for Internet by joaoh1 
+**/
 $(document).ready(function(){
   //Basic Variables
   var meilk = parseInt(localStorage['meilkcache']) || 0;
@@ -8,7 +14,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "41";
+  var buildnumber = "42";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
