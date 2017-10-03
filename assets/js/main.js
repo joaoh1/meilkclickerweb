@@ -2,7 +2,7 @@
 Meilk Clicker Web:
 A game full of inside jokes.
 Original made by MrMoo_
-Original Recreation for Internet by joaoh1 
+Original Recreation for Internet by joaoh1
 **/
 $(document).ready(function(){
   //Basic Variables
@@ -14,7 +14,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "42";
+  var buildnumber = "43";
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
@@ -59,7 +59,7 @@ $(document).ready(function(){
   }
 
   //Set the meilk count
-  $("#version").text(`v${version}-${buildnumber}`)
+  $("#version").text(`v${version}-${buildnumber}`);
   $(".meilkstats").text(`${meilk} Meilk`);
   $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);
   $(".mpcstats").text(`${meilkpclick} Meilk / Click`);
@@ -68,13 +68,13 @@ $(document).ready(function(){
   //Meilk Clicker!
   $(".meilk").click(function(){
     if (antimacro <= 20) {
-      meilk += meilkpclick
+      meilk += meilkpclick;
       console.log(`Meilk: ${meilk}; MPC: ${meilkpclick};`);
       $(".meilkstats").text(`${meilk} Meilk`);
-       antimacro++
+       antimacro++;
     } else {
       console.error(`Ha! Anti-Macro caught you! You clicked ${antimacro} in this second! `);
-      antimacro++
+      antimacro++;
     }
   });
 
@@ -122,7 +122,7 @@ $(document).ready(function(){
         si${si} /= 10;
         purchase(${simpc},${simps});
       }
-    });`)
+    });`);
   }
 
   //Shop Items: Per Clicks
@@ -154,7 +154,7 @@ $(document).ready(function(){
 
   //Prepare the loading!
   function prepareLoad() {
-    var codetoload = document.getElementById('loadinput2').value
+    var codetoload = document.getElementById('loadinput2').value;
     console.log(codetoload);
     loadGame(codetoload);
   }
@@ -216,7 +216,7 @@ $(document).ready(function(){
         }
       } else {
         console.log("PPressed");
-        localStorage['cacheenabled'] = "true"
+        localStorage['cacheenabled'] = "true";
         $(".savestatus").text("Caching: Enabled").fadeIn(0).delay(500).fadeOut(600);
       }
     }
@@ -224,7 +224,7 @@ $(document).ready(function(){
 
   //Saving
   function saveGame() {
-    let savecode = `Meilk Clicker;${version};${buildnumber};${meilk};${meilkpclick};${meilkpsecond};`
+    let savecode = `Meilk Clicker;${version};${buildnumber};${meilk};${meilkpclick};${meilkpsecond};`;
     let saveshop1 = 1;
     let saveshop2 = 1;
     let saveshop3 = 0;
@@ -243,7 +243,7 @@ $(document).ready(function(){
       eval(`saveshop2 = sis${saveshop1}`);
       savecode += saveshop2;
       savecode += ";";
-      saveshop1++
+      saveshop1++;
       console.log(savecode);
     }
     savecode = window.btoa(savecode);
@@ -261,7 +261,7 @@ $(document).ready(function(){
     loadcode = loadcode.split(";");
     console.log(loadcode);
     if (version != loadcode[1] || loadcode[0] != "Meilk Clicker") {
-      loadcode = "Meilk Clicker;0.2;29;0;1;0;30;70;200;500;20;100;250;475;750;"
+      loadcode = "Meilk Clicker;0.2;29;0;1;0;30;70;200;500;20;100;250;475;750;";
       loadcode = loadcode.split(";");
       console.error("Error!");
       console.error("Possibility 1: This isn't a Meilk Clicker code");
@@ -276,7 +276,7 @@ $(document).ready(function(){
     while (sisaveload <= siccount && sisaveload3 == 0) {
       eval(`sisaveload2 = ${sisaveload} + 5;`);
       eval(`sic${sisaveload} = parseInt(loadcode[${sisaveload2}]);`);
-      sisaveload++
+      sisaveload++;
     }
     sisaveload = 1;
     sisaveload2 = 1;
@@ -284,7 +284,7 @@ $(document).ready(function(){
     while (sisaveload <= siscount && sisaveload3 == 1) {
       eval(`sisaveload2 = ${sisaveload} + 5 + ${siccount};`);
       eval(`sis${sisaveload} = parseInt(loadcode[${sisaveload2}]);`);
-      sisaveload++
+      sisaveload++;
     }
     $(".meilkstats").text(`${meilk} Meilk`);
     $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);

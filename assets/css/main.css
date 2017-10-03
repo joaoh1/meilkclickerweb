@@ -1,11 +1,11 @@
 :root {
+  background-color: #eee;
+  color: #333;
+  font-family: "Comic Sans MS", sans-serif;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: #eee;
-  color: #333;
-  font-family: "Comic Sans MS", sans-serif;
 }
 
 p {
@@ -55,26 +55,26 @@ p {
 }
 
 .loadbutton:active {
-  border-color: #b5a61e;
   background-color: #e8db6c;
+  border-color: #b5a61e;
 }
 
 .version {
-  position: absolute;
   bottom: 0;
-  left: 0;
   font-size: 18px;
   font-weight: bold;
+  left: 0;
   margin-left: 3px;
+  position: absolute;
 }
 
 .savestatus {
-  position: absolute;
   bottom: 0;
-  right: 0;
   font-size: 18px;
   font-weight: bold;
   margin-right: 3px;
+  position: absolute;
+  right: 0;
 }
 
 .shopitem {
@@ -82,17 +82,17 @@ p {
 }
 
 .meilk {
+  cursor: pointer;
   height: 170px;
   width: 170px;
-  cursor: pointer;
 }
 
 .meilkarea {
   float: left;
-  text-align: center;
   height: 256px;
-  width: 256px;
   margin: 5%;
+  text-align: center;
+  width: 256px;
 }
 
 .meilkstats {
@@ -106,9 +106,9 @@ p {
 }
 
 .shop {
-  margin-top: 20px;
-  margin-right: 5px;
   float: right;
+  margin-right: 5px;
+  margin-top: 20px;
 }
 
 .shopupgrades {
@@ -116,23 +116,23 @@ p {
 }
 
 .shopupgrades li {
-  width: 140px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #cb2;
   background-color: #eee697;
-  margin-bottom: 5px;
+  border-color: #cb2;
+  border-style: solid;
+  border-width: 5px;
   font-size: 20px;
+  margin-bottom: 5px;
+  width: 140px;
 }
 
 .shopitem1 {
-  margin-left: 2px;
-  font-weight: bold;
   font-size: 19px;
+  font-weight: bold;
+  margin-left: 2px;
 }
 
 .shopitem2 {
-  margin-left: 2px;
-  font-weight: normal;
   font-size: 18px;
+  font-weight: normal;
+  margin-left: 2px;
 }
