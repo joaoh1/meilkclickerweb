@@ -14,7 +14,8 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "43";
+  var buildnumber = "44";
+  var modloaded = 0;
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
     eval(`${'si' + si} = parseInt(localStorage['si${si}cache']) || ${sicost};`);
@@ -159,6 +160,13 @@ $(document).ready(function(){
     loadGame(codetoload);
   }
 
+  //Prepare the loading!
+  function prepareMod() {
+    var modtoload = document.getElementById('modinput').value;
+    console.log(modtoload);
+    loadmod(modtoload);
+  }
+
   //Keybinds!
   $("body").keydown(function(event){
     //R Keybind to reload shop
@@ -178,7 +186,17 @@ $(document).ready(function(){
         <p>Paste your Save Code!</p>
         <input id="loadinput2" type="text" name="Load Input" value="">
         <p></p>
-        <button class="loadbutton">Load</p>`);
+        <button class="loadbutton" id="loadbuttonl">Load</p>`);
+    }
+
+    //Modding Keybind
+    if (event.keyCode == 77 ) {
+      $(".meilkoptions").show();
+      $("#menucontent").html(`
+        <p>Paste your Mod Code!</p>
+        <textarea id="modinput"></textarea>
+        <p></p>
+        <button class="loadbutton" id="loadbuttonm">Load</p>`);
     }
 
     //Hide the options
@@ -187,8 +205,13 @@ $(document).ready(function(){
     }
 
     //"Load" button
-    $(".loadbutton").click(function(){
+    $("#loadbuttonl").click(function(){
       prepareLoad();
+    });
+
+    //"Load" button (Modding)
+    $("#loadbuttonm").unbind('click').click(function(){
+      prepareMod();
     });
 
     //P Keybind to toggle caching
@@ -290,6 +313,19 @@ $(document).ready(function(){
     $(".mpsstats").text(`${meilkpsecond} Meilk / Second`);
     $(".mpcstats").text(`${meilkpclick} Meilk / Click`);
     reloadShop();
+    $(".meilkoptions").hide();
+  }
+
+  //Load le mods :I
+  function loadmod(code) {
+    modloaded = 1;
+    eval(code);
+    console.log("Loading...");
+  }
+
+  function modLoaded() {
+    reloadShop();
+    console.log("Mod loaded!");
     $(".meilkoptions").hide();
   }
 
