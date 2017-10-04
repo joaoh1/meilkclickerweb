@@ -14,7 +14,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "44";
+  var buildnumber = "45";
   var modloaded = 0;
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
