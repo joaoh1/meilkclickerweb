@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Meilk Clicker Web - Go Play It!</title>
+    <link>http://joaoh1.github.com/meilkclickerweb</link>
+    <description>Seriously, go play it, we are a game, not a news website. :/</description>
+    <item>
+      <title>Atomic Meilk Discovered!</title>
+      <link>http://joaoh1.github.com/meilkclickerweb</link>
+      <description>only going to show if you play /s :^)</description>
+    </item>
+  </channel>
+</rss>

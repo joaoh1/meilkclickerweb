@@ -11,7 +11,7 @@
   }
 
   .meilkstats {
-    font-size: 23px;
+    font-size: 22px;
   }
 
   .shopitem1, .mpcstats, .mpsstats {
@@ -35,6 +35,10 @@
   .shop {
     margin-right: 3px;
     margin-top: 10px;
+  }
+
+  .version {
+    font-size: 15px;
   }
 }
 
@@ -81,6 +85,10 @@
   .shop {
     margin-right: 5px;
     margin-top: 20px;
+  }
+
+  .version {
+    font-size: 18px;
   }
 }
 
@@ -152,7 +160,6 @@ p {
 
 .version {
   bottom: 0;
-  font-size: 18px;
   font-weight: bold;
   left: 0;
   margin-left: 3px;

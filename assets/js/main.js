@@ -14,7 +14,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "45";
+  var buildnumber = "50-FINAL";
   var modloaded = 0;
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
@@ -286,9 +286,7 @@ $(document).ready(function(){
     if (version != loadcode[1] || loadcode[0] != "Meilk Clicker") {
       loadcode = "Meilk Clicker;0.2;29;0;1;0;30;70;200;500;20;100;250;475;750;";
       loadcode = loadcode.split(";");
-      console.error("Error!");
-      console.error("Possibility 1: This isn't a Meilk Clicker code");
-      console.error("Possibility 2: The version isn't the same as the current one!");
+      console.error("Error!\nPossibility 1: This isn't a Meilk Clicker code!\nPossibility 2: The version isn't the same as the current one!");
     }
     meilk = parseInt(loadcode[3]);
     meilkpclick = parseInt(loadcode[4]);
@@ -327,6 +325,11 @@ $(document).ready(function(){
     reloadShop();
     console.log("Mod loaded!");
     $(".meilkoptions").hide();
+  }
+
+  function givetakemeilk(meilkg, meilkt) {
+    meilk += meilkg;
+    meilk -= meilkt;
   }
 
   //Button Visuals
