@@ -5,9 +5,9 @@
     <link>http://joaoh1.github.com/meilkclickerweb</link>
     <description>Seriously, go play it, we are a game, not a news website. :/</description>
     <item>
-      <title>Atomic Meilk Discovered!</title>
+      <title>Note:</title>
       <link>http://joaoh1.github.com/meilkclickerweb</link>
-      <description>only going to show if you play /s :^)</description>
+      <description>We added support for Cookie Clicker, just place the entire main.js and have fun :^)</description>
     </item>
   </channel>
 </rss>
