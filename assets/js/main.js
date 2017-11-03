@@ -14,7 +14,7 @@ $(document).ready(function(){
   var siscount = 5;
   var antimacro = 0;
   var version = "0.2";
-  var buildnumber = "51";
+  var buildnumber = "52";
   var modloaded = 0;
   //To make Shop Stuff easier!
   function createSi(si, sicost, sin, cuid) {
@@ -169,80 +169,63 @@ $(document).ready(function(){
 
   //Keybinds!
   $("body").keydown(function(event){
+    //Open Menu | TAB
+    if (event.keyCode == 9 ) {
+      $(".meilkoptions").show();
+      $("#menucontent").html(`
+        <p>Choose an Option</p>
+      `);
+    }
+
     //R Keybind to reload shop
     if (event.keyCode == 82 ) {
       reloadShop();
-    }
-
-    //Save dah game
-    if (event.keyCode == 83 ) {
-      saveGame();
-    }
-
-    //Show options to load
-    if (event.keyCode == 76 ) {
-      $(".meilkoptions").show();
-      $("#menucontent").html(`
-        <p>Paste your Save Code!</p>
-        <input id="loadinput2" type="text" name="Load Input" value="">
-        <p></p>
-        <button class="loadbutton" id="loadbuttonl">Load</p>`);
-    }
-
-    //Modding Keybind
-    if (event.keyCode == 77 ) {
-      $(".meilkoptions").show();
-      $("#menucontent").html(`
-        <p>Paste your Mod Code!</p>
-        <textarea id="modinput"></textarea>
-        <p></p>
-        <button class="loadbutton" id="loadbuttonm">Load</p>`);
     }
 
     //Hide the options
     if (event.keyCode == 27 ) {
       $(".meilkoptions").hide();
     }
+  });
 
-    //"Load" button
-    $("#loadbuttonl").click(function(){
-      prepareLoad();
-    });
-
-    //"Load" button (Modding)
-    $("#loadbuttonm").unbind('click').click(function(){
-      prepareMod();
-    });
-
-    //P Keybind to toggle caching
-    if (event.keyCode == 80 ) {
-      if (localStorage['cacheenabled'] == "true") {
-        localStorage['cacheenabled'] = undefined;
-        console.log("P Disabled");
-        $(".savestatus").text("Caching: Disabled").fadeIn(0).delay(500).fadeOut(600);
-        localStorage['meilkcache'] = undefined;
-        localStorage['mpscache'] = undefined;
-        localStorage['mpccache'] = undefined;
-        let sicleaning = 1;
-        let sicleaning2 = 0;
-        while (sicleaning <= siccount && sicleaning2 == 0) {
-           eval(`localStorage['sic${sicleaning}cache'] = undefined;`);
-           console.log(`Cleaning Sic Cache: ${sicleaning}`);
-           sicleaning++;
-        }
-        sicleaning = 1;
-        sicleaning2 = 1;
-        while (sicleaning <= siscount && sicleaning2 == 1) {
-           eval(`localStorage['sis${sicleaning}cache'] = undefined`);
-           console.log(`Cleaning Sis Cache: ${sicleaning}`);
-           sicleaning++;
-        }
-      } else {
-        console.log("PPressed");
-        localStorage['cacheenabled'] = "true";
-        $(".savestatus").text("Caching: Enabled").fadeIn(0).delay(500).fadeOut(600);
+  //Caching
+  function toggleCache() {
+    if (localStorage['cacheenabled'] == "true") {
+      localStorage['cacheenabled'] = undefined;
+      console.log("P Disabled");
+      $(".savestatus").text("Caching: Disabled").fadeIn(0).delay(500).fadeOut(600);
+      localStorage['meilkcache'] = undefined;
+      localStorage['mpscache'] = undefined;
+      localStorage['mpccache'] = undefined;
+      let sicleaning = 1;
+      let sicleaning2 = 0;
+      while (sicleaning <= siccount && sicleaning2 == 0) {
+         eval(`localStorage['sic${sicleaning}cache'] = undefined;`);
+         console.log(`Cleaning Sic Cache: ${sicleaning}`);
+         sicleaning++;
       }
+      sicleaning = 1;
+      sicleaning2 = 1;
+      while (sicleaning <= siscount && sicleaning2 == 1) {
+         eval(`localStorage['sis${sicleaning}cache'] = undefined`);
+         console.log(`Cleaning Sis Cache: ${sicleaning}`);
+         sicleaning++;
+      }
+    } else {
+      console.log("PPressed");
+      localStorage['cacheenabled'] = "true";
+      $(".savestatus").text("Caching: Enabled").fadeIn(0).delay(500).fadeOut(600);
     }
+  }
+
+  //"Load" button
+  $("#loadbuttonl").click(function(){
+    prepareLoad();
+  });
+
+  //"Load" button (Modding)
+  $("#loadbuttonm").unbind('click').click(function(){
+    prepareMod();
   });
 
   //Saving
@@ -327,18 +310,46 @@ $(document).ready(function(){
     $(".meilkoptions").hide();
   }
 
-  function givetakemeilk(meilkg, meilkt) {
-    meilk += meilkg;
-    meilk -= meilkt;
-  }
-
   //Button Visuals
   $(".shopitem").mousedown(function(){
     $(this).css({"border-color": "#B5A61E", "background-color": "#E8DB6C"});
   });
 
+  //Close le menu
   $(".closemenu").click(function(){
     $(".meilkoptions").css({"display": "none"});
+  });
+
+  //Choose Buttons: Save
+  $(".savechoose").click(function(){
+    saveGame();
+  });
+
+  //Choose Buttons: Load
+  $(".loadchoose").click(function(){
+    $(".meilkoptions").show();
+    $("#menucontent").html(`
+      <p>Paste your Save Code!</p>
+      <input id="loadinput2" type="text" name="Load Input" value="">
+      <p></p>
+      <button class="loadbutton" id="loadbuttonl">Load</p>`
+    );
+  });
+
+  //Choose Buttons: Mod
+  $(".modchoose").click(function(){
+    $(".meilkoptions").show();
+    $("#menucontent").html(`
+      <p>Paste your Mod Code!</p>
+      <textarea id="modinput"></textarea>
+      <p></p>
+      <button class="loadbutton" id="loadbuttonm">Load</p>`
+    );
+  });
+
+  //Choose Buttons: Toggle Cache
+  $(".cachechoose").click(function(){
+    toggleCache();
   });
 
   $("body").mouseup(function(){

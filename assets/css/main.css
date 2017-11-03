@@ -133,8 +133,14 @@ p {
   padding: 15px;
 }
 
+.choosemenu {
+  position: relative;
+  left: 0;
+  text-align: left;
+  top: 0;
+}
+
 .closemenu {
-  overflow: auto;
   position: relative;
   right: 0;
   text-align: right;
